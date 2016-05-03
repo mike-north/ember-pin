@@ -11,7 +11,7 @@ Install this addon with ember-cli
 ember install ember-pin
 ```
 
-And then wrap whatever you want inside the `{{pinned-content}}` component, defining either the `top` or `bottom` property
+And then wrap whatever you want inside the `{{pinned-content}}` component, defining either the `top` or `bottom` property (numeric values, in pixels)
 
 ```hbs
 {{#pinned-content top=20}}
@@ -25,7 +25,6 @@ And then wrap whatever you want inside the `{{pinned-content}}` component, defin
       </p>
     </div>
   </div>
-
 {{/pinned-content}}
 ```
 
