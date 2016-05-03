@@ -1,8 +1,35 @@
 # ember-pin [![Build Status](https://travis-ci.org/levanto-financial/ember-pin.svg?branch=master)](https://travis-ci.org/levanto-financial/ember-pin)
 
-This README outlines the details of collaborating on this Ember addon.
+![ember-pin](http://i65.tinypic.com/bhwzn8.gif)
 
-## Installation
+Pin elements of your UI, triggered by scrolling.
+
+## Use
+Install this addon with ember-cli
+
+```
+ember install ember-pin
+```
+
+And then wrap whatever you want inside the `{{pinned-content}}` component, defining either the `top` or `bottom` property
+
+```hbs
+{{#pinned-content top=20}}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">Top-Pinned</span>
+      <p>
+        This card should snap to the top
+        of the viewport as the user starts 
+        scrolling down
+      </p>
+    </div>
+  </div>
+
+{{/pinned-content}}
+```
+
+## Collaborate
 
 * `git clone` this repository
 * `npm install`
