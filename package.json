@@ -1,7 +1,7 @@
 {
   "name": "ember-pin",
   "version": "0.1.1",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Scroll-triggered fixed pieces of UI, for Ember.js",
   "directories": {
     "doc": "doc",
     "test": "tests"
