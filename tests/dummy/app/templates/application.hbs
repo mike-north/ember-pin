@@ -1,3 +1,35 @@
-<h2 id="title">Welcome to Ember</h2>
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <h2 id="title">ember-pin</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s9 bacon">
+      <p>Bacon ipsum dolor amet ullamco flank id enim magna ut tenderloin. Enim spare ribs tenderloin minim. Eiusmod in frankfurter labore jowl minim ham laboris short loin ad pastrami filet mignon tenderloin. Id in lorem, nisi venison aute aliqua dolor pastrami.</p>
 
-{{outlet}}
+      <p>Ham prosciutto eu drumstick ut reprehenderit. Et enim dolore hamburger brisket. Shankle bacon eu, biltong rump ribeye elit meatloaf shank strip steak fugiat ham hock laborum tongue. Biltong brisket boudin commodo pork belly doner cupim cupidatat proident landjaeger porchetta nulla. Lorem doner labore spare ribs pork loin. Et tri-tip fatback, esse jerky biltong pancetta fugiat in jowl aute t-bone.</p>
+
+      <p>Andouille tail tempor, ground round incididunt shankle porchetta t-bone. Mollit ut fugiat incididunt bacon quis ut pig in beef ribs consectetur ground round non nulla do. Laborum brisket pork belly, flank jerky cupidatat pork chop landjaeger alcatra chicken ball tip spare ribs beef. Pork chop cupidatat turkey ut leberkas hamburger pork belly incididunt meatloaf voluptate beef duis brisket ipsum. Magna lorem pork belly shank, shoulder filet mignon porchetta capicola meatball est proident venison brisket cupim irure. Aliqua boudin turkey cow, anim in elit ut eiusmod biltong swine esse. Fugiat ad in voluptate culpa, swine occaecat laboris.</p>
+
+      <p>Beef jerky chuck turducken sirloin boudin in, porchetta biltong ea. Kielbasa salami dolor tempor irure fugiat tail. Ham ut pig, corned beef dolore chuck occaecat ea tail beef ribs pork loin. Incididunt landjaeger ipsum, corned beef pork belly sausage sint fugiat tempor venison chuck nostrud ad. Cillum mollit lorem anim officia. Corned beef in spare ribs reprehenderit.</p>
+
+      <p>Pork chop elit frankfurter ribeye shoulder anim in. Short loin shoulder brisket picanha salami, ground round in enim ex laboris alcatra est. Exercitation strip steak ea irure salami laborum. Doner tongue sint, dolore landjaeger voluptate deserunt tempor porchetta cupidatat ut short loin.</p>
+
+      <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+    </div>
+    <div class="col s3">
+      {{#pinned-content top=20}}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">Top-Pinned</span>
+            <p>This card should snap to the top of the viewport as the user starts scrolling down</p>
+
+          </div>
+        </div>
+
+      {{/pinned-content}}
+    </div>
+
+  </div>
+</div>
