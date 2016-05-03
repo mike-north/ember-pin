@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- '5'
+- '4'
 sudo: false
 cache:
   directories:
@@ -23,7 +23,7 @@ install:
 - npm install
 - bower install
 script:
-- ember try $EMBER_TRY_SCENARIO test --skip-cleanup
+- ember try $EMBER_TRY_SCENARIO test --skip-cleanup && gco bower.json
 notifications:
   slack:
     secure: bePUB2hQZ761p/bDI/0oF14IDXdHKIj4lhDRh3ilfifn4+Arquu2QZHvKhmru9n+YHh7w2gUJZPYtTgTdHiqHK9qbokw/OisMiCdXmiVtWlGTkXcLCydrTa7/ohAlAOa/zio/9ns4+8NH2C1IbiQ2oSUG2VcK8qMX/a7p7n/ExGi3JEM+X2GZE+VhHQUsFRQGghUUTqB37YwTyUMioJUhph1eqQdhJ3RrKWjeMrpVPa88geoIw7qyh/GlYvQNZ5KCphonCyxkmQ4+4YjOb0j/heLY9ncf76arvYAwALPdmMEOc+RKXjW/ixoti03P+v3Ml/4J76volWfd3YiihOuagt4T6PsTE/zVFLYC3i5Tjc3NAEgocoAUdrvHPSEiATtIzCxePxSOU6fL8rvqwd81F5G3Edb55NgDf6tZD/KAB1lmJZ6qV9oxf/d6yQzt0jzjtqdq8h21XiNjCEPUFioLcePajRJPekLzJlTTi3EGv++PSusSZhTlY1gQ6sZ14viTs5UMTIu2XQqZb0FxQNOGDFQSDYCx0Iva40ennrPxNRA6ZopOThOo/DqA+mBvJhpJEod/JpYXuqLIVcsxtmk04kb0uDaTAICdbo1UFOnfv1kjkGF8R7HXajoQG+gsytxqOjeIvy2rVeseq+XnQhTAEYjvHYgiwmu+ymM8jw2gCE=
