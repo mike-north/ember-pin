@@ -53,3 +53,27 @@ test('fixed to top if top is huge', function(assert) {
     done();
   });
 });
+
+test('width is preserved when fixed', function(assert) {
+
+  let done = assert.async();
+  // Template block usage:
+  this.set('top', -100);
+  Ember.run(() => {
+    this.render(hbs`
+      <div style="width: 600px; height: 2000px">
+        {{#pinned-content top=top}}
+          <div style="width: 402px; display: inline-block">
+            template block text
+          </div>
+        {{/pinned-content}}
+      </div>
+    `);
+    assert.equal(this.$('.pinned-content').attr('style').indexOf('width: 600px') >= 0, false);
+    this.set('top', 1000); // Trigger "Fixed to top"
+    Ember.run.later(() => {
+      assert.equal(this.$('.pinned-content').attr('style').indexOf('width: 600px') >= 0, true);
+      done();
+    }, 100);
+  });
+});

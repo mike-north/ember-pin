@@ -10,15 +10,25 @@ export default Component.extend({
   bottom: null,
   windoc: inject.service(),
   layout,
+  _unfixedWidth: null,
   didInsertElement() {
     this._super(...arguments);
+    this._saveUnfixedWidth();
     run.scheduleOnce('afterRender', () => {
       this.set('_initialOffsetTop', this.$().offset().top);
       this.set('_initialOffsetLeft', this.$().offset().left);
     });
   },
+
+  _saveUnfixedWidth() {
+    if (this.$() && !(this.get('_fixedToTop') || this.get('_fixedToBottom'))) {
+      this.set('_unfixedWidth', this.$().width());
+    }
+  },
+
   _fixedToTop: computed('_initialOffsetTop', 'windoc.scrollTop', 'top', function() {
     if (this.get('top') === null) {
+      run.debounce(this, '_saveUnfixedWidth', 10);
       return false;
     } else {
       return (this.get('windoc.scrollTop') + this.get('top')) > this.get('_initialOffsetTop');
@@ -27,11 +37,11 @@ export default Component.extend({
 
   _fixedToBottom: computed('_initialOffsetTop', 'windoc.clientHeight', 'windoc.scrollBottom', 'bottom', function() {
     if (this.get('bottom') === null) {
+      run.debounce(this, '_saveUnfixedWidth', 10);
       return false;
     } else {
       let x = (this.get('windoc.scrollHeight') - this.get('_initialOffsetTop'));
       let y = (this.get('windoc.scrollBottom') + this.get('bottom'));
-      console.log(x, y);
       return y > this.get('bottom');
     }
   }),
@@ -43,10 +53,16 @@ export default Component.extend({
         cssAttrs.push(['position', 'fixed']);
         cssAttrs.push(['top', `${this.get('top')}px`]);
         cssAttrs.push(['left', `${this.get('_initialOffsetLeft')}px`]);
+        if (this.get('_unfixedWidth')) {
+          cssAttrs.push(['width', `${this.get('_unfixedWidth')}px`]);
+        }
       } else if (this.get('_fixedToBottom')) {
         cssAttrs.push(['position', 'fixed']);
         cssAttrs.push(['bottom', `${this.get('bottom')}px`]);
         cssAttrs.push(['left', `${this.get('_initialOffsetLeft')}px`]);
+        if (this.get('_unfixedWidth')) {
+          cssAttrs.push(['width', `${this.get('_unfixedWidth')}px`]);
+        }
       }
       return htmlSafe(cssAttrs.map((attr) => {
         return `${attr[0]}: ${attr[1]}`;
