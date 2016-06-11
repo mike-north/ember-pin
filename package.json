@@ -1,6 +1,6 @@
 {
   "name": "ember-pin",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Scroll-triggered fixed pieces of UI, for Ember.js",
   "directories": {
     "doc": "doc",
