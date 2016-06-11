@@ -40,7 +40,7 @@ export default Component.extend({
       run.debounce(this, '_saveUnfixedWidth', 10);
       return false;
     } else {
-      let x = (this.get('windoc.scrollHeight') - this.get('_initialOffsetTop'));
+      // let x = (this.get('windoc.scrollHeight') - this.get('_initialOffsetTop'));
       let y = (this.get('windoc.scrollBottom') + this.get('bottom'));
       return y > this.get('bottom');
     }
