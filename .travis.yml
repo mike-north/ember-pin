@@ -31,6 +31,9 @@ matrix:
     - env: EMBER_TRY_SCENARIO=ember-canary
 
 before_install:
+  - npm config set spin false
+  - npm install -g bower
+  - bower --version
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - "npm config set spin false"
@@ -43,13 +46,3 @@ script:
   # Usually, it's ok to finish the test scenario without reverting
   #  to the addon's original dependency state, skipping "cleanup".
   - ember try:one $EMBER_TRY_SCENARIO test --skip-cleanup
-notifications:
-  slack:
-    secure: bePUB2hQZ761p/bDI/0oF14IDXdHKIj4lhDRh3ilfifn4+Arquu2QZHvKhmru9n+YHh7w2gUJZPYtTgTdHiqHK9qbokw/OisMiCdXmiVtWlGTkXcLCydrTa7/ohAlAOa/zio/9ns4+8NH2C1IbiQ2oSUG2VcK8qMX/a7p7n/ExGi3JEM+X2GZE+VhHQUsFRQGghUUTqB37YwTyUMioJUhph1eqQdhJ3RrKWjeMrpVPa88geoIw7qyh/GlYvQNZ5KCphonCyxkmQ4+4YjOb0j/heLY9ncf76arvYAwALPdmMEOc+RKXjW/ixoti03P+v3Ml/4J76volWfd3YiihOuagt4T6PsTE/zVFLYC3i5Tjc3NAEgocoAUdrvHPSEiATtIzCxePxSOU6fL8rvqwd81F5G3Edb55NgDf6tZD/KAB1lmJZ6qV9oxf/d6yQzt0jzjtqdq8h21XiNjCEPUFioLcePajRJPekLzJlTTi3EGv++PSusSZhTlY1gQ6sZ14viTs5UMTIu2XQqZb0FxQNOGDFQSDYCx0Iva40ennrPxNRA6ZopOThOo/DqA+mBvJhpJEod/JpYXuqLIVcsxtmk04kb0uDaTAICdbo1UFOnfv1kjkGF8R7HXajoQG+gsytxqOjeIvy2rVeseq+XnQhTAEYjvHYgiwmu+ymM8jw2gCE=
-deploy:
-  provider: heroku
-  api_key:
-    secure: G3Z/CT4aYz+NMLHuYbuBQNRpB3HoOHIgnH2vgUWrC4+c+O9geEPZ6/rcpnaOj4PKY+m2tIHSHvZxd9vOew6AOvGa9mwYZCXehGSYLqp2/ewlatZvhvV2wEHmmX2itooq5wFtZwYlx1xoeYZjwtDoBPPji+ti4wiKaFcImKce/F+iZzPfD/9uN3FuX0ifXnamYXmze/egIRghaIMdcduP9bRCiFBkzNZDWojTWhjh2hbI3F0kfBf0cDnQoM+YccHL75aD0pTVXUomV7BAK2304xeJP1UZQHE47J+kAiu96UDgTE1r7GbXYl2cv1qMNOuLIvTTVUXPngv7Ocry5qQgJibc+sKj+aPlQjRmQNVEoJYGQk/DGC1aWS51C1vcAv221HPYGKTS2Sg3jN+vc2Yd4vCMJ/o9yW7wtecTIa5zx+kJR3p/OoOSFdXuUYei9XIwPqUBMFiut+0BgsRmTNYwlQMIv+KHrfBRK0th3Pl+UdmhN7E2xVFe96W2rvkZu1MX2OHdZmyR0wgbQuDRQtR7Ol4QDjfahSfN7b8MvQl87zZW4lrcpoQc0R3VmpE1T9PkUEevWAFbSsJr8mp/QwSleP7FuTxnrdXsMVASAAoeKZXygdJ/f67fyve9NmO5uLkyfNZQUWoBrgP5PyiZNSya1tLpiitSRACbmT8hDz+hHO4=
-  app: ember-pin
-  on:
-    repo: levanto-financial/ember-pin
