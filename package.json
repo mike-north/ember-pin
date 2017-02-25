@@ -36,7 +36,7 @@
     "ember-suave": "4.0.0",
     "ember-sublime": "0.0.9",
     "ember-windoc": "~0.1.1",
-    "loader.js": "^4.0.11"
+    "loader.js": "^4.2.2"
   },
   "keywords": [
     "ember-addon"
