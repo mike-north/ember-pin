@@ -3,11 +3,12 @@ import config from './config/environment';
 
 const { Router } = Ember;
 
-const router = Router.extend({
-  location: config.locationType
+const AppRouter = Router.extend({
+  location: config.locationType,
+  rootURL: config.rootURL
 });
 
-router.map(function() {
+AppRouter.map(function() {
 });
 
-export default router;
+export default AppRouter;
