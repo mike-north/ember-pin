@@ -37,22 +37,6 @@ test('not fixed if neither top nor bottom specified', function(assert) {
   });
 });
 
-test('fixed to top if top is huge', function(assert) {
-
-  let done = assert.async();
-  // Template block usage:
-  run(() => {
-    this.render(hbs`
-      {{#pinned-content top=1000}}
-        template block text
-      {{/pinned-content}}
-    `);
-
-    assert.equal(this.$('.pinned-content').css('position'), 'fixed');
-    assert.equal(this.$('.pinned-content').css('top'), '1000px');
-    done();
-  });
-});
 
 test('width is preserved when fixed', function(assert) {
 
