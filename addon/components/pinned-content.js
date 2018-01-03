@@ -18,6 +18,7 @@ export default Component.extend({
     this._saveUnfixedWidth();
     run.scheduleOnce('afterRender', () => {
       this.set('_initialOffsetTop', this.$().offset().top);
+      this.set('_initialHeight', this.$().height());
       this.set('_initialOffsetLeft', this.$().offset().left);
     });
   },
@@ -33,18 +34,25 @@ export default Component.extend({
       run.debounce(this, '_saveUnfixedWidth', 10);
       return false;
     } else {
+      // console.log(this.get('windoc.scrollTop') ,this.get('top'));
       return this.get('windoc.scrollTop') + this.get('top') > this.get('_initialOffsetTop');
     }
   }),
 
-  _fixedToBottom: computed('_initialOffsetTop', 'windoc.{clientHeight, scrollBottom}', 'bottom', function() {
+  _fixedToBottom: computed('_initialOffsetTop', '_initialHeight', 'windoc.{clientHeight,scrollTop}', 'bottom', function() {
     if (this.get('bottom') === null) {
       run.debounce(this, '_saveUnfixedWidth', 10);
       return false;
     } else {
       // let x = (this.get('windoc.scrollHeight') - this.get('_initialOffsetTop'));
-      let y = this.get('windoc.scrollBottom') + this.get('bottom');
-      return y > this.get('bottom');
+      // let y = this.get('windoc.scrollBottom') + this.get('bottom');
+      // console.log(this.get('_initialOffsetTop') - this.get('windoc.scrollBottom') - this.get('windoc.clientHeight') + this.get('bottom'));
+      let trigger = this.get('_initialOffsetTop') + this.get('_initialHeight') + this.get('bottom');
+      let pos = this.get('windoc.scrollTop') + this.get('windoc.clientHeight');
+      console.log('trigger=', trigger, 'pos=', pos);
+      return pos >= trigger;
+      // return this.get('windoc.scrollBottom') - this.get('windoc.clientHeight') >= this.get('bottom');
+      // return y > this.get('bottom');
     }
   }),
 
