@@ -33,44 +33,56 @@ export default Component.extend({
       run.debounce(this, '_saveUnfixedWidth', 10);
       return false;
     } else {
-      return (this.get('windoc.scrollTop') + this.get('top')) > this.get('_initialOffsetTop');
+      return this.get('windoc.scrollTop') + this.get('top') > this.get('_initialOffsetTop');
     }
   }),
 
-  _fixedToBottom: computed('_initialOffsetTop', 'windoc.clientHeight', 'windoc.scrollBottom', 'bottom', function() {
+  _fixedToBottom: computed('_initialOffsetTop', 'windoc.{clientHeight, scrollBottom}', 'bottom', function() {
     if (this.get('bottom') === null) {
       run.debounce(this, '_saveUnfixedWidth', 10);
       return false;
     } else {
       // let x = (this.get('windoc.scrollHeight') - this.get('_initialOffsetTop'));
-      let y = (this.get('windoc.scrollBottom') + this.get('bottom'));
+      let y = this.get('windoc.scrollBottom') + this.get('bottom');
       return y > this.get('bottom');
     }
   }),
 
-  style: computed('_initialOffsetTop', '_initialOffsetLeft', 'top', 'bottom', '_fixedToTop', '_fixedToBottom', function() {
-    if (this.element) {
-      let cssAttrs = [];
-      if (this.get('_fixedToTop')) {
-        cssAttrs.push(['position', 'fixed']);
-        cssAttrs.push(['top', `${this.get('top')}px`]);
-        cssAttrs.push(['left', `${this.get('_initialOffsetLeft')}px`]);
-        if (this.get('_unfixedWidth')) {
-          cssAttrs.push(['width', `${this.get('_unfixedWidth')}px`]);
+  style: computed(
+    '_initialOffsetTop',
+    '_initialOffsetLeft',
+    'top',
+    'bottom',
+    '_fixedToTop',
+    '_fixedToBottom',
+    function() {
+      if (this.element) {
+        let cssAttrs = [];
+        if (this.get('_fixedToTop')) {
+          cssAttrs.push(['position', 'fixed']);
+          cssAttrs.push(['top', `${this.get('top')}px`]);
+          cssAttrs.push(['left', `${this.get('_initialOffsetLeft')}px`]);
+          if (this.get('_unfixedWidth')) {
+            cssAttrs.push(['width', `${this.get('_unfixedWidth')}px`]);
+          }
+        } else if (this.get('_fixedToBottom')) {
+          cssAttrs.push(['position', 'fixed']);
+          cssAttrs.push(['bottom', `${this.get('bottom')}px`]);
+          cssAttrs.push(['left', `${this.get('_initialOffsetLeft')}px`]);
+          if (this.get('_unfixedWidth')) {
+            cssAttrs.push(['width', `${this.get('_unfixedWidth')}px`]);
+          }
         }
-      } else if (this.get('_fixedToBottom')) {
-        cssAttrs.push(['position', 'fixed']);
-        cssAttrs.push(['bottom', `${this.get('bottom')}px`]);
-        cssAttrs.push(['left', `${this.get('_initialOffsetLeft')}px`]);
-        if (this.get('_unfixedWidth')) {
-          cssAttrs.push(['width', `${this.get('_unfixedWidth')}px`]);
-        }
+        return htmlSafe(
+          cssAttrs
+            .map(attr => {
+              return `${attr[0]}: ${attr[1]}`;
+            })
+            .join('; ')
+        );
+      } else {
+        return htmlSafe('');
       }
-      return htmlSafe(cssAttrs.map((attr) => {
-        return `${attr[0]}: ${attr[1]}`;
-      }).join('; '));
-    } else {
-      return htmlSafe('');
     }
-  })
+  )
 });
