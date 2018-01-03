@@ -1,14 +1,16 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { htmlSafe } from '@ember/string';
+import { run } from '@ember/runloop';
 import layout from '../templates/components/pinned-content';
-
-const { Component, inject, computed, String: { htmlSafe }, run } = Ember;
 
 export default Component.extend({
   classNames: ['pinned-content'],
   attributeBindings: ['style'],
   top: null,
   bottom: null,
-  windoc: inject.service(),
+  windoc: service(),
   layout,
   _unfixedWidth: null,
   didInsertElement() {
