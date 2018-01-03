@@ -2,28 +2,31 @@
 ---
 language: node_js
 node_js:
-  - "stable"
+  - "4"
 
+sudo: false
 dist: trusty
-sudo: required
 
 addons:
-  apt:
-    sources:
-    - google-chrome
-    packages:
-    - google-chrome-stable
+  chrome: stable
 
 cache:
   directories:
-    - node_modules
+    - $HOME/.npm
 
 env:
-  - EMBER_TRY_SCENARIO=default
-  - EMBER_TRY_SCENARIO=ember-1.13
-  - EMBER_TRY_SCENARIO=ember-release
-  - EMBER_TRY_SCENARIO=ember-beta
-  - EMBER_TRY_SCENARIO=ember-canary
+  global:
+    # See https://git.io/vdao3 for details.
+    - JOBS=1
+  matrix:
+    # we recommend new addons test the current and previous LTS
+    # as well as latest stable release (bonus points to beta/canary)
+    - EMBER_TRY_SCENARIO=ember-lts-2.12
+    - EMBER_TRY_SCENARIO=ember-lts-2.16
+    - EMBER_TRY_SCENARIO=ember-release
+    - EMBER_TRY_SCENARIO=ember-beta
+    - EMBER_TRY_SCENARIO=ember-canary
+    - EMBER_TRY_SCENARIO=ember-default
 
 matrix:
   fast_finish: true
@@ -31,18 +34,15 @@ matrix:
     - env: EMBER_TRY_SCENARIO=ember-canary
 
 before_install:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - "npm config set spin false"
-
-install:
-  - npm install
-  - bower install
+  - npm config set spin false
+  - npm install -g npm@4
+  - npm --version
 
 script:
+  - npm run lint:js
   # Usually, it's ok to finish the test scenario without reverting
   #  to the addon's original dependency state, skipping "cleanup".
-  - ember try:one $EMBER_TRY_SCENARIO test --skip-cleanup
+  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
 notifications:
   slack:
     secure: bePUB2hQZ761p/bDI/0oF14IDXdHKIj4lhDRh3ilfifn4+Arquu2QZHvKhmru9n+YHh7w2gUJZPYtTgTdHiqHK9qbokw/OisMiCdXmiVtWlGTkXcLCydrTa7/ohAlAOa/zio/9ns4+8NH2C1IbiQ2oSUG2VcK8qMX/a7p7n/ExGi3JEM+X2GZE+VhHQUsFRQGghUUTqB37YwTyUMioJUhph1eqQdhJ3RrKWjeMrpVPa88geoIw7qyh/GlYvQNZ5KCphonCyxkmQ4+4YjOb0j/heLY9ncf76arvYAwALPdmMEOc+RKXjW/ixoti03P+v3Ml/4J76volWfd3YiihOuagt4T6PsTE/zVFLYC3i5Tjc3NAEgocoAUdrvHPSEiATtIzCxePxSOU6fL8rvqwd81F5G3Edb55NgDf6tZD/KAB1lmJZ6qV9oxf/d6yQzt0jzjtqdq8h21XiNjCEPUFioLcePajRJPekLzJlTTi3EGv++PSusSZhTlY1gQ6sZ14viTs5UMTIu2XQqZb0FxQNOGDFQSDYCx0Iva40ennrPxNRA6ZopOThOo/DqA+mBvJhpJEod/JpYXuqLIVcsxtmk04kb0uDaTAICdbo1UFOnfv1kjkGF8R7HXajoQG+gsytxqOjeIvy2rVeseq+XnQhTAEYjvHYgiwmu+ymM8jw2gCE=

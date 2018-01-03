@@ -1,5 +1,7 @@
 # ember-pin [![Build Status](https://travis-ci.org/levanto-financial/ember-pin.svg?branch=master)](https://travis-ci.org/levanto-financial/ember-pin)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/mike-north/ember-pin.svg)](https://greenkeeper.io/)
+
 ![ember-pin](http://i65.tinypic.com/bhwzn8.gif)
 
 Pin elements of your UI, triggered by scrolling.

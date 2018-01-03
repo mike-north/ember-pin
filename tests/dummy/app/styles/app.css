@@ -1,9 +1,30 @@
+body {
+  margin: 0;
+  padding: 0;
+}
 
 .bacon p {
   font-size: 2rem;
   color: #aaa;
 }
 
-.bottom-example {
-  margin-top: 2000px;
+.top-example-1 {
+  position: absolute;
+  top: 500px;
 }
+
+.top-example-2 {
+  position: absolute;
+  top: 900px;
+}
+
+.top-example-3 {
+  position: absolute;
+  top: 1300px;
+}
+
+.top-example-4 {
+  position: absolute;
+  top: 1700px;
+}
+
