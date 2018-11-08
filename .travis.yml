@@ -53,9 +53,4 @@ before_install:
 
 script:
   - yarn lint:js
-  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
-after_success:
-  - nvm install 10
-  - nvm use 10
-  - yarn install --no-lockfile --non-interactive
-  - yarn travis-deploy-once "npm run semantic-release"
+  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO && yarn travis-deploy-once "npm run semantic-release"
