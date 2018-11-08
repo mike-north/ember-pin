@@ -19,6 +19,11 @@
   "author": "Mike North (http://mike.works) <michael.l.north@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@commitlint/cli": "7.2.1",
+    "@commitlint/config-conventional": "7.1.2",
+    "@commitlint/travis-cli": "7.2.1",
+    "@mike-north/js-lib-semantic-release-config": "^0.0.0-development",
+    "@mike-north/js-lib-renovate-config": "^0.0.1",
     "broccoli-asset-rev": "^2.4.6",
     "ember-ci": "0.1.3",
     "ember-cli": "2.18.0",
@@ -36,10 +41,12 @@
     "ember-load-initializers": "^1.0.0",
     "ember-resolver": "^4.5.0",
     "ember-source": "~2.18.0",
+    "ember-windoc": "~0.2.0",
     "eslint-plugin-ember": "^5.0.0",
     "eslint-plugin-node": "^5.2.1",
-    "ember-windoc": "~0.2.0",
-    "loader.js": "^4.0.11"
+    "husky": "1.1.2",
+    "loader.js": "^4.0.11",
+    "travis-deploy-once": "5.0.9"
   },
   "keywords": [
     "ember-addon"
@@ -51,5 +58,18 @@
   "ember-addon": {
     "configPath": "tests/dummy/config",
     "demoUrl": "ember-pin.herokuapp.com"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "./node_modules/.bin/commitlint -e $HUSKY_GIT_PARAMS"
+    }
+  },
+  "release": {
+    "extends": "@mike-north/js-lib-semantic-release-config"
   }
 }
