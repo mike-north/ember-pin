@@ -1,4 +1,4 @@
-# ember-pin [![Build Status](https://travis-ci.org/levanto-financial/ember-pin.svg?branch=master)](https://travis-ci.org/levanto-financial/ember-pin)
+# ember-pin
 
 ![ember-pin](http://i65.tinypic.com/bhwzn8.gif)
 
