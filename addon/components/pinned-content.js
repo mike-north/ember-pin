@@ -39,16 +39,22 @@ export default Component.extend({
     }
   }),
 
-  _fixedToBottom: computed('_initialOffsetTop', '_initialHeight', 'windoc.{clientHeight,scrollTop}', 'bottom', function() {
-    if (this.get('bottom') === null) {
-      run.debounce(this, '_saveUnfixedWidth', 10);
-      return false;
-    } else {
-      let trigger = this.get('_initialOffsetTop') + this.get('_initialHeight') + this.get('bottom');
-      let pos = this.get('windoc.scrollTop') + this.get('windoc.clientHeight');
-      return pos >= trigger;
+  _fixedToBottom: computed(
+    '_initialOffsetTop',
+    '_initialHeight',
+    'windoc.{clientHeight,scrollTop}',
+    'bottom',
+    function() {
+      if (this.get('bottom') === null) {
+        run.debounce(this, '_saveUnfixedWidth', 10);
+        return false;
+      } else {
+        let trigger = this.get('_initialOffsetTop') + this.get('_initialHeight') + this.get('bottom');
+        let pos = this.get('windoc.scrollTop') + this.get('windoc.clientHeight');
+        return pos >= trigger;
+      }
     }
-  }),
+  ),
 
   style: computed(
     '_initialOffsetTop',

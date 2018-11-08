@@ -46,28 +46,16 @@ jobs:
     - env: EMBER_TRY_SCENARIO=ember-canary
     - env: EMBER_TRY_SCENARIO=ember-default-with-jquery
 
-    - JOBS=1
-
 before_install:
   - npm config set spin false
   - npm install -g npm@4
   - npm --version
 
 script:
-  - npm run lint:js
-  # Usually, it's ok to finish the test scenario without reverting
-  #  to the addon's original dependency state, skipping "cleanup".
-  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
+  - yarn lint:js
+  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
 after_success:
   - nvm install 10
   - nvm use 10
   - yarn install --no-lockfile --non-interactive
   - yarn travis-deploy-once "npm run semantic-release"
-
-deploy:
-  provider: heroku
-  api_key:
-    secure: G3Z/CT4aYz+NMLHuYbuBQNRpB3HoOHIgnH2vgUWrC4+c+O9geEPZ6/rcpnaOj4PKY+m2tIHSHvZxd9vOew6AOvGa9mwYZCXehGSYLqp2/ewlatZvhvV2wEHmmX2itooq5wFtZwYlx1xoeYZjwtDoBPPji+ti4wiKaFcImKce/F+iZzPfD/9uN3FuX0ifXnamYXmze/egIRghaIMdcduP9bRCiFBkzNZDWojTWhjh2hbI3F0kfBf0cDnQoM+YccHL75aD0pTVXUomV7BAK2304xeJP1UZQHE47J+kAiu96UDgTE1r7GbXYl2cv1qMNOuLIvTTVUXPngv7Ocry5qQgJibc+sKj+aPlQjRmQNVEoJYGQk/DGC1aWS51C1vcAv221HPYGKTS2Sg3jN+vc2Yd4vCMJ/o9yW7wtecTIa5zx+kJR3p/OoOSFdXuUYei9XIwPqUBMFiut+0BgsRmTNYwlQMIv+KHrfBRK0th3Pl+UdmhN7E2xVFe96W2rvkZu1MX2OHdZmyR0wgbQuDRQtR7Ol4QDjfahSfN7b8MvQl87zZW4lrcpoQc0R3VmpE1T9PkUEevWAFbSsJr8mp/QwSleP7FuTxnrdXsMVASAAoeKZXygdJ/f67fyve9NmO5uLkyfNZQUWoBrgP5PyiZNSya1tLpiitSRACbmT8hDz+hHO4=
-  app: ember-pin
-  on:
-    repo: mike-north/ember-pin
