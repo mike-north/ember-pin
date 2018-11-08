@@ -1,56 +1,50 @@
 language: node_js
 node_js:
-  - '8'
-
+- '8'
 sudo: false
 dist: trusty
-
 addons:
   chrome: stable
 before_script:
-  - sudo chown root /opt/google/chrome/chrome-sandbox
-  - sudo chmod 4755 /opt/google/chrome/chrome-sandbox
-
+- sudo chown root /opt/google/chrome/chrome-sandbox
+- sudo chmod 4755 /opt/google/chrome/chrome-sandbox
 cache:
   directories:
-    - $HOME/.npm
-
+  - "$HOME/.npm"
 yarn: true
 env:
   global:
-    # See https://git.io/vdao3 for details.
-    - JOBS=1
-
+  - JOBS=1
 jobs:
   fail_fast: true
   allow_failures:
-    - env: EMBER_TRY_SCENARIO=ember-canary
-
+  - env: EMBER_TRY_SCENARIO=ember-canary
   include:
-    # runs linting and tests with current locked deps
-
-    - stage: 'Tests'
-      name: 'Tests'
-      script:
-        - yarn lint:hbs
-        - yarn lint:js
-        - npm test
-
-    # we recommend new addons test the current and previous LTS
-    # as well as latest stable release (bonus points to beta/canary)
-    - stage: 'Additional Tests'
-      env: EMBER_TRY_SCENARIO=ember-lts-2.16
-    - env: EMBER_TRY_SCENARIO=ember-lts-2.18
-    - env: EMBER_TRY_SCENARIO=ember-release
-    - env: EMBER_TRY_SCENARIO=ember-beta
-    - env: EMBER_TRY_SCENARIO=ember-canary
-    - env: EMBER_TRY_SCENARIO=ember-default-with-jquery
-
+  - stage: Tests
+    name: Tests
+    script:
+    - yarn lint:hbs
+    - yarn lint:js
+    - npm test
+  - stage: Additional Tests
+    env: EMBER_TRY_SCENARIO=ember-lts-2.16
+  - env: EMBER_TRY_SCENARIO=ember-lts-2.18
+  - env: EMBER_TRY_SCENARIO=ember-release
+  - env: EMBER_TRY_SCENARIO=ember-beta
+  - env: EMBER_TRY_SCENARIO=ember-canary
+  - env: EMBER_TRY_SCENARIO=ember-default-with-jquery
 before_install:
-  - npm config set spin false
-  - npm install -g npm@4
-  - npm --version
-
+- npm config set spin false
+- npm install -g npm@4
+- npm --version
 script:
-  - yarn lint:js
-  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO && yarn travis-deploy-once "npm run semantic-release"
+- yarn lint:js
+- node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO && yarn travis-deploy-once "npm
+  run semantic-release"
+deploy:
+  provider: heroku
+  api_key:
+    secure: AfTNWFBx0wQm2jU3eUA9002ludDJ44NDC4XpOlfh9zljcMkC+xEz+dTq5e4sEGY1caqOdlH5qq5GXlXuWr0/sUK6XQFxS4kraz2Jed5kyGeO/z/ik2GJT5Dgz+HkmQcID5tZDxYAqAaZ29YAhA2IaI6MkHDPHZZvIBTZ4F+efU+J4oo7/nkjAXM4Ib3RZi2JcXfLuiOHq+UpG6k4Sr+l1+/+AwdpIaWSgJcQIKEATGDHvojmYardOrV5+pGgjyiDNZlWKv/U1nMmRZnL9oChPveD8KJEnhlhJ/q7u4S1Ix8PHe9/ZU/SHxScQgMfNg+K2G5TNqeD/I71ZAg0hvLL9F6+3VlaaGfaX7iK8TOV9FkeY4MKeGyqZnt9PpGZQIYbHm4Mqw9kbB1LIhU2bBkRrXarXZUKOxORgNlLb+XirHKBJ7Enhv/CZjasDZJI98DkHnl5rhWSmCNiw3WD0zdhuHEKtph7EAGWugqXtt1Ovq5Cc8fP41+OUVjt78Bl0pAyVcMAXsfdFHHsXWnkEr9jUfmflg86ivQdO9Ra6mWnjFzzMYko4zgPnXwv55bcg7e/9QBT3xoQqr6g4MvjXyDkWaI6h5Po8M6wXA7tqY778sQ8AlIU4zHB2s7zkdk2gofBZCa72s/TheNYBQI/tA22jOwpHybyjTSK7tcQnBOeaOU=
+  app: ember-pin
+  on:
+    repo: mike-north/ember-pin
