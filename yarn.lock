@@ -3845,7 +3845,7 @@ ember-assign-polyfill@^2.5.0:
     ember-cli-babel "^6.6.0"
     ember-cli-version-checker "^2.0.0"
 
-ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.16.0, ember-cli-babel@^6.6.0, ember-cli-babel@^6.8.1:
+ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.6.0, ember-cli-babel@^6.8.1:
   version "6.17.2"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.17.2.tgz#f0d53d2fb95e70c15d8db84760d045f88f458f69"
   integrity sha512-9KcCvF1PcelEFTSiJ/Ld20tfuW9acMkwHC/xINLsmwqJVDbm3oEqWtiFDZ5ebaC278O5I0GqNJWJLYNoWMNZ8g==
@@ -4304,12 +4304,12 @@ ember-try@1.1.0:
     rsvp "^4.7.0"
     walk-sync "^0.3.3"
 
-ember-windoc@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/ember-windoc/-/ember-windoc-0.3.0.tgz#4d51ba3117ce1612b8d069658ab1124683327432"
-  integrity sha512-4DXmwyNkKgP7SpL8nB+8v16e/xKzWBWvXdLBY/NislSj/UtJBFc0NWI/bT4SufTnEvfnuiXNlBIUjlPQo0xHoA==
+ember-windoc@0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/ember-windoc/-/ember-windoc-0.3.1.tgz#1da16f6f9068de2895f7ec3d8b89598ccbb942ab"
+  integrity sha512-W+G3YcirYaudQB4Q4G3STxGr0DRJ02OmpIOB8Hb17I6xK9huqGjIG5D7r/1BsxQfVCb5qysJ87VzwZEm1JkqSg==
   dependencies:
-    ember-cli-babel "^6.16.0"
+    ember-cli-babel "^7.0.0"
   optionalDependencies:
     "@mike-north/js-lib-renovate-config" "1.0.0"
     "@mike-north/js-lib-semantic-release-config" "1.0.0"
