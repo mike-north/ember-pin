@@ -9,8 +9,7 @@ addons:
   chrome: stable
 
 cache:
-  directories:
-    - '$HOME/.npm'
+  yarn: true
 
 yarn: true
 
@@ -18,24 +17,47 @@ env:
   global:
     - JOBS=1
 
+stages:
+  - 'Tests'
+  - 'Additional Tests'
+  - 'Canary Tests'
+  - name: 'Deploy'
+    if: branch = master AND type = push
+
 jobs:
   fail_fast: true
   allow_failures:
     - env: EMBER_TRY_SCENARIO=ember-canary
   include:
-    - stage: Tests
-      name: Tests
+    - stage: 'Tests'
+      name: 'Tests'
+      install:
+        - yarn install --non-interactive
       script:
-        - yarn lint:hbs
         - yarn lint:js
-        - npm test
+        - ember test
+
+    - name: 'Floating Dependencies'
+      script:
+        - ember test
+
     - stage: Additional Tests
       env: EMBER_TRY_SCENARIO=ember-lts-2.16
     - env: EMBER_TRY_SCENARIO=ember-lts-2.18
     - env: EMBER_TRY_SCENARIO=ember-release
     - env: EMBER_TRY_SCENARIO=ember-beta
-    - env: EMBER_TRY_SCENARIO=ember-canary
     - env: EMBER_TRY_SCENARIO=ember-default-with-jquery
+
+    - stage: 'Canary Tests'
+      script:
+        - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
+      env: EMBER_TRY_SCENARIO=ember-canary
+
+    - stage: 'Deploy'
+      name: 'Publish to npm'
+      install:
+        - yarn install --non-interactive
+      script: yarn semantic-release
 
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
@@ -47,5 +69,4 @@ before_script:
 
 script:
   - yarn lint:js
-  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO && yarn travis-deploy-once "npm
-    run semantic-release"
+  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
