@@ -1692,6 +1692,13 @@ babel-plugin-debug-macros@^0.2.0-beta.6:
   dependencies:
     semver "^5.3.0"
 
+babel-plugin-debug-macros@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-debug-macros/-/babel-plugin-debug-macros-0.3.0.tgz#7a025944faef0777804ef3518c54e8b040197397"
+  integrity sha512-D6qYBI/3+FvcKVnRnH6FBUwXPp/5o/jnJNVFKqVaZpYAWx88+R8jNNyaEX7iQFs7UfCib6rcY/9+ICR4jhjFCQ==
+  dependencies:
+    semver "^5.3.0"
+
 babel-plugin-ember-modules-api-polyfill@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-ember-modules-api-polyfill/-/babel-plugin-ember-modules-api-polyfill-2.6.0.tgz#9524a65ef0c31ee82536a19c243fbaec1b977cbb"
@@ -3942,6 +3949,30 @@ ember-cli-babel@^7.0.0, ember-cli-babel@^7.1.3, ember-cli-babel@^7.2.0, ember-cl
     ensure-posix-path "^1.0.2"
     semver "^5.5.0"
 
+ember-cli-babel@^7.4.2:
+  version "7.4.3"
+  resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.4.3.tgz#1ff35ffd54c6206d72635686f4e5bb1674c9eae5"
+  integrity sha512-jTAYz38q+iGXwMVTMQhYVHp//7NGJCvDOqFcn/pzozn+KU34Cvmlyi8MJBucKOA+t+khY8DSFz7jE667U993nA==
+  dependencies:
+    "@babel/core" "^7.0.0"
+    "@babel/plugin-transform-modules-amd" "^7.0.0"
+    "@babel/plugin-transform-runtime" "^7.2.0"
+    "@babel/polyfill" "^7.0.0"
+    "@babel/preset-env" "^7.0.0"
+    "@babel/runtime" "^7.2.0"
+    amd-name-resolver "^1.2.1"
+    babel-plugin-debug-macros "^0.3.0"
+    babel-plugin-ember-modules-api-polyfill "^2.6.0"
+    babel-plugin-module-resolver "^3.1.1"
+    broccoli-babel-transpiler "^7.1.2"
+    broccoli-debug "^0.6.4"
+    broccoli-funnel "^2.0.1"
+    broccoli-source "^1.1.0"
+    clone "^2.1.2"
+    ember-cli-version-checker "^2.1.2"
+    ensure-posix-path "^1.0.2"
+    semver "^5.5.0"
+
 ember-cli-broccoli-sane-watcher@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/ember-cli-broccoli-sane-watcher/-/ember-cli-broccoli-sane-watcher-3.0.0.tgz#dc1812c047e1ceec4413d3c41b51a9ffc61b4cfe"
@@ -4243,23 +4274,23 @@ ember-maybe-import-regenerator@0.1.6:
     ember-cli-babel "^6.0.0-beta.4"
     regenerator-runtime "^0.9.5"
 
-ember-qunit@4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/ember-qunit/-/ember-qunit-4.3.0.tgz#79d78f21ebafd598cb72df7481366a01d8c86f40"
-  integrity sha512-5UHSJgGzXC/0jagUg0SZjEjkyEWmDZTokSS4VUvJ7R4WkmxbzASptdvjrzd5xd4GD5BHMg9b74SyqC2KGArglw==
+ember-qunit@4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/ember-qunit/-/ember-qunit-4.4.0.tgz#813d7b1febc5a35b86db64c4a54ea5bf91a5fbf0"
+  integrity sha512-+XIgpcMzWIzUR31L5cq4eDab/vQQLfWPbApcrYe8kYOSWn/ePtXijTW3FRn0finyt0TJvrMrcl+JZzhNSFD5yw==
   dependencies:
     "@ember/test-helpers" "^1.3.2"
-    broccoli-funnel "^2.0.1"
+    broccoli-funnel "^2.0.2"
     broccoli-merge-trees "^3.0.2"
     common-tags "^1.4.0"
-    ember-cli-babel "^7.4.1"
+    ember-cli-babel "^7.4.2"
     ember-cli-test-loader "^2.2.0"
     qunit "^2.9.1"
 
-ember-resolver@5.1.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/ember-resolver/-/ember-resolver-5.1.1.tgz#ffc2b12e9a50b56f9f48f8c239b10d00a142dc42"
-  integrity sha512-P5Kqr+6HImxy2GXpYOf82WiNbhc2ZLohiIjaVLwF0AMqNLs1tU1qQhDHbERjrvaPI4MJj+yG65o29X/1Qo6f4Q==
+ember-resolver@5.1.2:
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/ember-resolver/-/ember-resolver-5.1.2.tgz#a3ea9a1c0febd656d4b70068dbc7ec4bb9b522ac"
+  integrity sha512-gWJfqkdgzUCv2z8H/Rd+qp84tyWWIsTcY7AM+Mu1vCjv0+aU/errbxC8S0suFYbobnTDpZZTScH+r/WAJTYxaA==
   dependencies:
     "@glimmer/resolver" "^0.4.1"
     babel-plugin-debug-macros "^0.1.10"
